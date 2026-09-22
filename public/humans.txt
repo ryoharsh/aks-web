@@ -1,0 +1,5 @@
+/* Aks — a personal companion for understanding yourself. */
+SITE: https://aks.miyal.app
+DEVELOPER: Harsh Kumar Singh (ryoharsh) — https://ryoharsh.vercel.app
+STUDIO: Miyal
+CONTACT: https://ryoharsh.vercel.app
