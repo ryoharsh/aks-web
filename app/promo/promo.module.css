@@ -1,0 +1,1005 @@
+/* Aks.ai promo film — scoped styles.
+   -----------------------------------------------------------------
+   One quiet paper surface. Type, space, and the product screens do
+   the work; nothing else competes. The palette is deliberately
+   almost monochrome — a soft off-white paper, a soft near-black ink,
+   two greys, and a single reserved accent lifted from the orb. No
+   decorative gradients, no borders, no shadows beyond the small
+   amount a device needs to sit convincingly on the page. */
+
+.page {
+  /* ---- palette: 1 base + 1 accent ---- */
+  --paper: #f7f6f2;
+  --paper-warm: #f2eee6;
+  --ink: #131312;
+  --muted: #6d6c66;
+  --hairline: rgba(19, 19, 18, 0.08);
+  --on-ink: #f8f7f3;
+
+  /* The only chromatic element in the film is the Aks orb itself
+     (see .orb + the logo asset) — everything else is paper and ink. */
+
+  /* ---- space ---- */
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --shell: 1360px;
+  --rhythm: clamp(3.5rem, 8vh, 7rem);
+  /* vertical breathing room per scene */
+  --gap: clamp(1.75rem, 4.5vh, 3.25rem);
+
+  /* ---- shape ---- */
+  --radius-device: 54px;
+  --radius-btn: 10px;
+
+  /* ---- motion (barely there) ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t: 300ms;
+
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-variant-numeric: lining-nums;
+}
+
+/* ------------------------------------------------------------------
+   Layout: one rhythm for every scene, one shell for every column.
+   ------------------------------------------------------------------ */
+
+.frame {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--gap);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--rhythm) var(--gutter);
+  overflow: hidden;
+  text-align: center;
+}
+
+.frameShort {
+  min-height: 92vh;
+  min-height: 92svh;
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------
+   Type scale. Hierarchy comes from size, weight and tracking only —
+   never from colour or ornament. Five steps, used consistently.
+   ------------------------------------------------------------------ */
+
+/* No margin resets here on purpose — Tailwind's preflight zeroes them and
+   scenes space their type with utilities, so this file never has to fight
+   utility order. */
+.d0,
+.d1,
+.d2,
+.d3 {
+  font-weight: 400;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* Every step scales with BOTH axes: min(vw, vh) keeps a scene's type and
+   its device in proportion, so a short laptop window shrinks the whole
+   frame instead of cropping it. The rem values are the floors that keep
+   type readable on phones. */
+
+/* the two framing statements: opening and closing */
+.d0 {
+  font-size: clamp(3.1rem, min(8.4vw, 12vh), 8.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.038em;
+}
+
+/* scene statements */
+.d1 {
+  font-size: clamp(2.8rem, min(7vw, 9vh), 6.6rem);
+  line-height: 1.01;
+  letter-spacing: -0.035em;
+}
+
+/* longer statements that need two lines to read comfortably */
+.d2 {
+  font-size: clamp(2.1rem, min(4.8vw, 6.4vh), 4.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+/* supporting statements, kept a clear step quieter than the display */
+.d3 {
+  font-size: clamp(1.65rem, min(3.4vw, 4.6vh), 2.9rem);
+  line-height: 1.14;
+  letter-spacing: -0.024em;
+}
+
+.wordmark {
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* The hero statement shares its row with the device, so it is sized to sit
+   inside a column rather than to span the page. */
+.heroTitle {
+  font-size: clamp(2.75rem, min(6.2vw, 9vh), 6.2rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.036em;
+  text-wrap: balance;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.lede {
+  max-width: 34rem;
+  font-size: clamp(1.0625rem, min(1.25vw, 1.9vh), 1.3rem);
+  line-height: 1.62;
+  letter-spacing: -0.008em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.note {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* small, wide-tracked label — the only "graphic" punctuation we allow */
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------------
+   Buttons & links — flat, no shadows, no scale.
+   ------------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.875rem;
+  padding-inline: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-btn);
+  font-size: 0.9375rem;
+  overflow: hidden;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    color var(--t) var(--ease);
+}
+
+/* Modifier scale sits after .btn so a single class decides the size. */
+.btnSm {
+  height: 2.5rem;
+  padding-inline: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.btnLg {
+  height: 3rem;
+  padding-inline: 2.25rem;
+  font-size: 0.9375rem;
+}
+
+.btnPrimary {
+  position: relative;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.btnPrimary:hover {
+  background: #33322e;
+}
+
+/* a hairline that draws across the CTA on hover — the quietest possible
+   invitation, in place of a lift or a shadow */
+.btnPrimary::after {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(248, 247, 243, 0.35);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 420ms var(--ease);
+  content: "";
+}
+
+.btnPrimary:hover::after {
+  transform: scaleX(1);
+}
+
+/* Understated text link: a hairline that draws itself in on hover. */
+.link {
+  position: relative;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--t) var(--ease);
+}
+
+.link::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.22em;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t) var(--ease);
+  content: "";
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ------------------------------------------------------------------
+   Nav — a soft paper scrim instead of a bordered, shadowed plate.
+   ------------------------------------------------------------------ */
+
+.nav {
+  position: relative;
+
+  isolation: isolate;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+
+  mask-image: linear-gradient(to bottom,
+      black 0%,
+      black 72%,
+      transparent 100%);
+
+  -webkit-mask-image: linear-gradient(to bottom,
+      black 0%,
+      black 72%,
+      transparent 100%);
+}
+
+.nav::before {
+  position: absolute;
+  z-index: -1;
+  inset: -1px 0;
+  background: linear-gradient(to bottom,
+      rgba(247, 246, 242, 0.94) 0%,
+      rgba(247, 246, 242, 0.78) 55%,
+      rgba(247, 246, 242, 0) 100%);
+  backdrop-filter: blur(8px) saturate(120%);
+  mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  content: "";
+}
+
+/* ------------------------------------------------------------------
+   Hero — copy and device share one axis, with a wide quiet gutter
+   between them.
+   ------------------------------------------------------------------ */
+
+.heroLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.6fr);
+  align-items: center;
+  justify-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  width: 100%;
+  max-width: var(--shell);
+  box-sizing: border-box;
+  margin-inline: auto;
+  padding: 0 var(--gutter);
+  text-align: left;
+}
+
+/* The hero is a pinned, viewport-tall scene: centring the whole frame (not
+   padding it) keeps the statement and the device on the same optical axis
+   with equal air above and below, at any window height. */
+.heroSection {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.heroCopy h1,
+.heroCopy p {
+  margin-inline: 0;
+}
+
+.heroPhone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroDevice {
+  width: min(26vw, 322px);
+  width: min(26vw, 322px, 34svh);
+}
+
+/* ------------------------------------------------------------------
+   iPhone-style device, built entirely in CSS. Quiet material: a thin
+   matte bezel, one soft shadow, one hairline highlight.
+   ------------------------------------------------------------------ */
+
+.device {
+  position: relative;
+  /* The second declaration bounds the device by viewport height so a scene
+     never grows taller than the screen it is pinned on. */
+  width: min(64vw, 320px);
+  width: min(64vw, 320px, 26svh);
+  /* Matches the 1080x2424 screenshots exactly so object-fit: cover is a
+     no-op — no status bar / gesture bar cropping, screenshot stays
+     registered inside the frame. */
+  aspect-ratio: 1080 / 2424;
+  /* Radius and bezel are expressed as percentages of the frame so the device
+     keeps its proportions at every size in the film (10px/54px at 320px). */
+  border-radius: 16.9% / 7.5%;
+  background: linear-gradient(158deg, #262625 0%, #191918 44%, #121211 100%);
+  padding: 3.1%;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 2px 4px rgba(23, 22, 20, 0.05),
+    0 32px 62px -30px rgba(23, 22, 20, 0.4);
+  will-change: transform;
+}
+
+.device::after {
+  position: absolute;
+  z-index: 3;
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: inherit;
+  pointer-events: none;
+  content: "";
+}
+
+.device-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 13.7% / 6.1%;
+  overflow: hidden;
+  background: #f4f3ef;
+}
+
+/* The captures match the frame's aspect ratio exactly, so this is a no-op
+   unless a rounding sub-pixel slips in — then it holds the screen still
+   instead of letting it drift off-centre. */
+.device-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.device-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* faint screen sheen for physical presence */
+.device-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(118deg,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(255, 255, 255, 0.02) 20%,
+      transparent 34%);
+}
+
+/* side buttons — positioned as fractions of the frame so they travel with it */
+.device-btn {
+  position: absolute;
+  width: max(1px, 0.6%);
+  border-radius: 2px;
+  background: #1e1e1d;
+}
+
+.device-btn-l1 {
+  left: -0.6%;
+  top: 20.9%;
+  height: 4.5%;
+}
+
+.device-btn-l2 {
+  left: -0.6%;
+  top: 27.6%;
+  height: 8.1%;
+}
+
+.device-btn-r {
+  right: -0.6%;
+  top: 25.1%;
+  height: 11.7%;
+}
+
+/* sits between the full-size device and the small one — used where a
+   statement and a device share a single centred column */
+.device-md {
+  width: min(52vw, 268px);
+  width: min(52vw, 268px, 24svh);
+}
+
+.device-sm {
+  width: min(46vw, 240px);
+  width: min(46vw, 240px, 20svh);
+}
+
+/* two devices share one row in the data scene, so each one is a size down */
+.device-xs {
+  width: min(41vw, 216px);
+  width: min(41vw, 216px, 20svh);
+}
+
+/* ------------------------------------------------------------------
+   Surfaces
+   ------------------------------------------------------------------ */
+
+/* Patterns: the backdrop warms by a hair, the only colour shift in the film. */
+.warm {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--paper-warm);
+}
+
+/* film grain — texture you register rather than see */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+.footer {
+  background: var(--paper);
+}
+
+/* word-split lines for text reveals */
+.pw-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* ------------------------------------------------------------------
+   Overlap stages: readable vertical flow by default; only overlapped
+   when JS takes over (the .is-live class is added inside the GSAP
+   setup, so no-JS and reduced-motion visitors always get the
+   readable version).
+   ------------------------------------------------------------------ */
+
+.hstack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.is-live .hstack {
+  display: grid;
+  gap: 0;
+  justify-items: center;
+  align-items: center;
+}
+
+.is-live .hstack>* {
+  grid-area: 1 / 1;
+}
+
+.mstack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-live .mstack {
+  position: relative;
+  display: block;
+  height: min(62vh, 560px);
+}
+
+.is-live .mstack>* {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+}
+
+/* ------------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .heroLayout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-block: 0;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .heroCopy {
+    justify-self: center;
+  }
+
+  .heroPhone {
+    justify-self: center;
+  }
+
+  .heroCopy h1,
+  .heroCopy p {
+    margin-inline: auto;
+  }
+
+  .heroPhone {
+    align-items: flex-start;
+  }
+
+  .heroDevice {
+    width: min(58vw, 240px);
+    width: min(58vw, 240px, 18svh);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav::before {
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+
+  .device-sm {
+    width: min(39vw, 168px);
+    width: min(39vw, 168px, 20svh);
+  }
+
+  .device-xs {
+    width: min(39vw, 180px);
+    width: min(39vw, 180px, 19svh);
+  }
+
+  .lede {
+    max-width: 30ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .device,
+  .pw-word {
+    will-change: auto;
+  }
+
+  .btnPrimary::after {
+    transition: none;
+  }
+
+  /* Nothing travels when there is no motion, so nothing needs clipping:
+     scenes that stack their devices (context, montage, human) grow to their
+     natural height and stay fully readable instead of being cut off. */
+  .frame {
+    overflow: visible;
+  }
+
+  .link::after,
+  .btn {
+    transition: none;
+  }
+
+  .nav::before {
+    backdrop-filter: none;
+    mask-image: none;
+    background: rgba(247, 246, 242, 0.9);
+  }
+}
+
+.timelineFrame {
+  position: relative;
+
+  width: min(1120px, calc(100vw - 48px));
+  height: min(760px, 100vh);
+  min-height: 620px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+
+/* =========================
+   TIMELINE
+   ========================= */
+
+.timelineRail {
+  position: relative;
+
+  height: 540px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 10px 0;
+}
+
+
+/* Base timeline line */
+
+.timelineRail::before {
+  content: "";
+
+  position: absolute;
+
+  top: 10px;
+  bottom: 10px;
+  left: 7px;
+
+  width: 1px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* Animated progress */
+
+.timelineProgress {
+  position: absolute;
+
+  top: 10px;
+  left: 6px;
+
+  width: 3px;
+  height: calc(100% - 20px);
+
+  border-radius: 999px;
+
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.95),
+      rgba(255, 255, 255, 0.712));
+
+  transform-origin: top center;
+}
+
+
+/* Timeline item */
+
+.timelineStep {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  min-height: 40px;
+}
+
+
+/* Timeline dot */
+
+.timelineNode {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: 15px;
+  height: 15px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.02),
+    0 0 24px rgba(255, 255, 255, 0.04);
+}
+
+
+/* Timeline label */
+
+.timelineStepLabel {
+  font-size: 13px;
+
+  line-height: 1.3;
+
+  color: rgba(0, 0, 0, 0.7);
+
+  white-space: nowrap;
+
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =========================
+   CONTENT
+   ========================= */
+
+.timelineContent {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+
+  align-items: center;
+
+  gap: 60px;
+}
+
+
+/* Heading */
+
+.timelineHeading {
+  position: relative;
+
+  z-index: 5;
+
+  align-self: center;
+}
+
+
+.timelineActiveLabel {
+  margin: 12px 0 0;
+
+  font-size: clamp(42px, 5vw, 72px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+
+  font-weight: 500;
+
+  color: black;
+}
+
+
+/* =========================
+   DEVICE
+   ========================= */
+
+.timelineDevice {
+  position: relative;
+
+  width: 300px;
+  height: 600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  justify-self: center;
+
+  perspective: 1200px;
+}
+
+
+/* Phone */
+
+.timelinePhone {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+.timelinePhone>* {
+  max-width: 100%;
+}
+
+
+/* Phone spotlight */
+
+.timelineDevice::before {
+  content: "";
+
+  position: absolute;
+
+  width: 360px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(ellipse,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.035) 35%,
+      transparent 70%);
+
+  filter: blur(20px);
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 800px) {
+
+  .timelineFrame {
+    width: min(100% - 32px, 560px);
+
+    height: 100vh;
+
+    min-height: 600px;
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+
+  /* Horizontal timeline */
+
+  .timelineRail {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 1px;
+
+    display: block;
+
+    transform: translateY(-50%);
+
+    opacity: 0.45;
+  }
+
+
+  .timelineRail::before {
+    top: 0;
+    bottom: auto;
+
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+  }
+
+
+  .timelineProgress {
+    top: -1px;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    transform-origin: left center;
+  }
+
+
+  .timelineStep {
+    position: absolute;
+
+    top: -7px;
+
+    min-height: 0;
+  }
+
+
+  .timelineStep:nth-child(2) {
+    left: 0%;
+  }
+
+
+  .timelineStep:nth-child(3) {
+    left: 20%;
+  }
+
+
+  .timelineStep:nth-child(4) {
+    left: 40%;
+  }
+
+
+  .timelineStep:nth-child(5) {
+    left: 60%;
+  }
+
+
+  .timelineStep:nth-child(6) {
+    left: 80%;
+  }
+
+
+  .timelineStep:nth-child(7) {
+    right: 0;
+  }
+
+
+  .timelineStepLabel {
+    display: none;
+  }
+
+
+  /* Content */
+
+  .timelineContent {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 30px;
+  }
+
+
+  .timelineHeading {
+    text-align: center;
+  }
+
+
+  .timelineActiveLabel {
+    font-size: clamp(38px, 11vw, 58px);
+  }
+
+
+  .timelineDevice {
+    width: 260px;
+
+    height: 500px;
+  }
+}

@@ -105,9 +105,8 @@ app/
     navbar.tsx           Sticky nav, scroll-compact state, mobile menu
     hero.tsx             Giant headline + scroll-scrubbed product showcase
     steps.tsx            Scroll-driven three-step panels
-    mirror.tsx           Mirror conversation example (illustrative, honest)
-    product-video.tsx    DemoVideo / FilmVideo / ClipVideo players
-    product-shot.tsx     ShotFrame + ProductShot (screenshot slot)
+    product-video.tsx    DemoVideo / FilmVideo players
+    product-shot.tsx     PhoneShot (device-frame screenshot slot)
     logo.tsx             Brand mark (favicon.png + wordmark)
     anim.tsx             Reveal / HeroIntro / MediaReveal / ScrubX /
                          Stage / Drift + useScrolled

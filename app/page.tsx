@@ -208,7 +208,7 @@ export default function Home() {
             {/* min-w-0 lets the snap-scroll row scroll instead of stretching the grid */}
             <div className="min-w-0 lg:col-span-7">
               <Stage item="[data-shot]">
-                <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-2 lg:items-start lg:overflow-visible lg:pb-0">
+                <div className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-2 lg:items-start lg:overflow-visible lg:pb-0">
                   <div
                     data-shot
                     className="w-[74vw] max-w-[340px] shrink-0 snap-center lg:w-auto lg:max-w-none"
@@ -505,7 +505,7 @@ export default function Home() {
               </Reveal>
               <Reveal delay={140}>
                 {/* Portrait slot: a founder photo can sit beside this block later
-                    without changing the layout (see ProductShot). */}
+                    without changing the layout (see PhoneShot). */}
                 <p className="mt-8 text-[clamp(1.75rem,3.4vw,2.75rem)] leading-tight font-black tracking-[-0.02em] italic">
                   {DEVELOPER_NAME}
                 </p>

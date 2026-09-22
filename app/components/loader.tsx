@@ -25,6 +25,12 @@ export default function Loader() {
   useEffect(() => {
     const el = ref.current;
     if (!el || isReducedMotion()) return;
+    // Routes that opt out (the promo film opens straight onto the orb) set
+    // this flag before this effect runs, so the loader never locks the page.
+    if (document.documentElement.hasAttribute("data-aks-skip-loader")) {
+      el.remove();
+      return;
+    }
 
     // Shows on every full page load (client-side navigation never remounts
     // the layout, so repeat views in-app are unaffected).

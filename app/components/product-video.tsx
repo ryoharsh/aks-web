@@ -63,23 +63,6 @@ export function DemoVideo({ src, label }: { src: string; label: string }) {
   );
 }
 
-/** Secondary clips: never autoplay, metadata-only preload, native controls. */
-export function ClipVideo({ src, label }: { src: string; label: string }) {
-  return (
-    <video
-      src={src}
-      width={W}
-      height={H}
-      className="aspect-video w-full bg-[#171717] object-cover"
-      controls
-      playsInline
-      preload="metadata"
-      aria-label={label}
-      title={label}
-    />
-  );
-}
-
 /**
  * Product-film video: muted loop that only plays while substantially in
  * view, paused everywhere else. Reduced-motion visitors get controls and
