@@ -8,6 +8,19 @@ Aks is developed by [Harsh Kumar Singh](https://ryoharsh.vercel.app) at **Miyal*
 - Android: available now — `com.miyal.aks` ([Google Play](https://play.google.com/store/apps/details?id=com.miyal.aks))
 - iOS: coming soon
 
+## Preview
+
+![Aks hero — giant editorial headline with product demo](docs/showcase-hero.png)
+
+![Mirror section — real app screenshots in staggered phone frames](docs/showcase-mirror.png)
+
+![Availability section — Aks app splash screen on Android](docs/showcase-app.png)
+
+<img src="docs/showcase-mobile.png" alt="Mirror section on mobile with swipeable screenshots" width="360">
+
+Screenshots live in `docs/` (documentation only — they are not served by the
+website). The in-app captures themselves live in `public/screenshots/`.
+
 ## Routes
 
 | Route             | Description                              |
@@ -118,11 +131,14 @@ public/
 - **Fonts** — Satoshi only. Real weights via `@font-face` (300/400/500/700/900 +
   italics). Never substitute Google Fonts; never rely on synthesized bold.
 - **Videos** — `slide_1.mp4` (hero showcase, autoplays muted once, pauses
-  off-screen), `slide_2.mp4` (product film, plays only while ≥40% visible),
-  `slide_3.mp4` (availability section, click-to-play). All `preload` tuned per
+  off-screen), `slide_2.mp4` (product film, plays only while ≥40% visible).
+  `slide_3.mp4` is currently unused (kept as a spare clip). All `preload` tuned per
   placement; none autoplay with sound.
-- **Screenshots** — app screenshots ship later. Drop them in
-  `public/screenshots/` and render with `<ProductShot>` — no redesign needed.
+- **Screenshots** — real 1080×2424 app captures in `public/screenshots/`,
+  rendered with `<PhoneShot>` (device-like frame, retina-sized variants via
+  `next/image`). Currently showcased: Mirror home (`...3745`), a real Mirror
+  conversation (`...4139`), and the splash screen (`...3682`). Only use shots
+  free of personal data — never publish captures showing account emails.
   Never depict `AiConversationScreen`; it is not part of the shipped product.
 - **Icons** — Hugeicons only, restrained monochrome treatment. Never emoji.
 

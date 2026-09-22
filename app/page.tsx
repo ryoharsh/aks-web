@@ -17,9 +17,8 @@ import Navbar from "./components/navbar";
 import Hero from "./components/hero";
 import Steps from "./components/steps";
 import { Drift, MediaReveal, Reveal, ScrubX, Stage } from "./components/anim";
-import MirrorExample from "./components/mirror";
-import { ClipVideo, FilmVideo } from "./components/product-video";
-import { ShotFrame } from "./components/product-shot";
+import { FilmVideo } from "./components/product-video";
+import { PhoneShot } from "./components/product-shot";
 import {
   ANDROID_PACKAGE,
   DEVELOPER_HANDLE,
@@ -169,7 +168,7 @@ export default function Home() {
           className="relative z-10 -mt-[5vw] scroll-mt-[64px] rounded-t-[20px] border border-b-0 border-[#E0E0DC] bg-white"
         >
           <div className={`${wide} grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12 lg:gap-10`}>
-            <div className="lg:col-span-5">
+            <div className="min-w-0 lg:col-span-5">
               <Reveal x={-28}>
                 <Label no="02">Mirror</Label>
                 <h2
@@ -206,12 +205,34 @@ export default function Home() {
                 </a>
               </Reveal>
             </div>
-            <div className="lg:col-span-7">
-              <Stage>
-                <MirrorExample />
+            {/* min-w-0 lets the snap-scroll row scroll instead of stretching the grid */}
+            <div className="min-w-0 lg:col-span-7">
+              <Stage item="[data-shot]">
+                <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-2 lg:items-start lg:overflow-visible lg:pb-0">
+                  <div
+                    data-shot
+                    className="w-[74vw] max-w-[340px] shrink-0 snap-center lg:w-auto lg:max-w-none"
+                  >
+                    <PhoneShot
+                      src="/screenshots/Screenshot_1790073745.png"
+                      alt="Mirror home in the Aks app: a greeting, topic chips, a quick check-in asking how today feels, and a conversation with Aks"
+                      caption="Mirror home — start with a check-in"
+                    />
+                  </div>
+                  <div
+                    data-shot
+                    className="w-[74vw] max-w-[340px] shrink-0 snap-center lg:mt-20 lg:w-auto lg:max-w-none"
+                  >
+                    <PhoneShot
+                      src="/screenshots/Screenshot_1790074139.png"
+                      alt="A real Mirror conversation where Aks recalls earlier check-ins and asks what's on the user's mind"
+                      caption="A real conversation, remembered"
+                    />
+                  </div>
+                </div>
               </Stage>
               <p className="mt-4 text-[13px] text-[#6B6B6B]">
-                An example conversation. Real app screenshots slot in here as they ship.
+                Real screens from the Aks app — including a conversation in Hindi.
               </p>
             </div>
           </div>
@@ -440,11 +461,13 @@ export default function Home() {
               </Reveal>
             </div>
 
-            <div className="lg:col-span-6">
+            <div className="mx-auto w-full max-w-[300px] lg:col-span-6 lg:mx-0 lg:max-w-[320px] lg:justify-self-center">
               <MediaReveal>
-                <ShotFrame caption="From the Aks app · Android">
-                  <ClipVideo src="/videos/slide_3.mp4" label="Aks app walkthrough" />
-                </ShotFrame>
+                <PhoneShot
+                  src="/screenshots/Screenshot_1790073682.png"
+                  alt="Aks app splash screen: the Aks orb above the Aks.ai wordmark"
+                  caption="Aks for Android"
+                />
               </MediaReveal>
             </div>
           </div>
