@@ -18,8 +18,8 @@ export function PhoneShot({
   eager?: boolean;
 }) {
   return (
-    <figure className="m-0">
-      <div className="overflow-hidden rounded-[44px] border border-[#D8D8D4] bg-black shadow-[0_2px_6px_rgba(0,0,0,0.08),0_32px_72px_rgba(0,0,0,0.16)]">
+    <figure className="m-0 transition-transform duration-500 hover:-translate-y-1.5">
+      <div className="overflow-hidden rounded-[44px] border border-[#D8D8D4] bg-black shadow-[0_2px_6px_rgba(0,0,0,0.08),0_32px_72px_rgba(23,23,23,0.18)] ring-1 ring-white/40">
         <Image
           src={src}
           alt={alt}

@@ -103,9 +103,9 @@ app/
   lib/site.ts            Public facts + structured data (see above)
   components/
     navbar.tsx           Sticky nav, scroll-compact state, mobile menu
-    hero.tsx             Giant headline + scroll-scrubbed product showcase
+    hero.tsx             Giant headline + scroll-scrubbed static showcase
+    hero-showcase.tsx    Static Mirror conversation + today card (no video)
     steps.tsx            Scroll-driven three-step panels
-    product-video.tsx    DemoVideo / FilmVideo players
     product-shot.tsx     PhoneShot (device-frame screenshot slot)
     logo.tsx             Brand mark (favicon.png + wordmark)
     anim.tsx             Reveal / HeroIntro / MediaReveal / ScrubX /
@@ -116,7 +116,6 @@ app/
   delete-account/page.tsx  Account deletion requests
 public/
   fonts/                 Satoshi .otf files (see Assets)
-  videos/                slide_1/2/3.mp4 — real product clips (720p, ~6s)
   screenshots/           Drop future app screenshots here (see below)
   favicon.png            Brand mark (48px) — logo + favicon
   adaptive-icon.png      App icon (1024px) — availability section
@@ -129,10 +128,9 @@ public/
 
 - **Fonts** — Satoshi only. Real weights via `@font-face` (300/400/500/700/900 +
   italics). Never substitute Google Fonts; never rely on synthesized bold.
-- **Videos** — `slide_1.mp4` (hero showcase, autoplays muted once, pauses
-  off-screen), `slide_2.mp4` (product film, plays only while ≥40% visible).
-  `slide_3.mp4` is currently unused (kept as a spare clip). All `preload` tuned per
-  placement; none autoplay with sound.
+- **Showcase** — static, no video. The hero uses `hero-showcase.tsx` (a calm
+  Mirror conversation mock + today context card); the "Quiet by design"
+  section uses principle cards + a dark assurance banner. No autoplay media.
 - **Screenshots** — real 1080×2424 app captures in `public/screenshots/`,
   rendered with `<PhoneShot>` (device-like frame, retina-sized variants via
   `next/image`). Currently showcased: Mirror home (`...3745`), a real Mirror

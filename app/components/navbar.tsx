@@ -41,7 +41,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <a
             href="#availability"
-            className="rounded-[8px] bg-[#171717] px-4 py-2 text-[14px] font-medium text-white transition-colors hover:bg-[#2b2b2b]"
+            className="rounded-full bg-[#171717] px-4 py-2 text-[14px] font-medium text-white shadow-[0_6px_16px_rgba(23,23,23,0.18)] transition-all duration-300 hover:-translate-y-px hover:bg-[#2b2b2b]"
           >
             Get Aks
           </a>

@@ -15,9 +15,9 @@ import {
 } from "hugeicons-react";
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
+import ProductHuntBadge from "./components/product-hunt-badge";
 import Steps from "./components/steps";
 import { Drift, MediaReveal, Reveal, ScrubX, Stage } from "./components/anim";
-import { FilmVideo } from "./components/product-video";
 import { PhoneShot } from "./components/product-shot";
 import {
   ANDROID_PACKAGE,
@@ -67,7 +67,7 @@ function CrowdChip({
   return (
     <div
       aria-hidden={dup || undefined}
-      className="flex shrink-0 items-center gap-4 rounded-[10px] border border-[#E2E2DE] bg-white px-6 py-5"
+      className="flex shrink-0 items-center gap-4 rounded-[16px] border border-[#E2E2DE] bg-white/90 px-6 py-5 shadow-[0_1px_6px_rgba(23,23,23,0.04)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#cfcfc9] hover:shadow-[0_14px_32px_rgba(23,23,23,0.10)]"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[8px] border border-[#E8E8E5] bg-[#FAFAF8] text-[#171717]">
         <item.icon size={19} aria-hidden />
@@ -312,6 +312,14 @@ export default function Home() {
           aria-labelledby="philosophy-heading"
           className="relative overflow-hidden py-24 text-center md:py-36"
         >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(720px 360px at 50% 42%, rgba(61,90,69,0.10), transparent 70%), radial-gradient(560px 300px at 50% 110%, rgba(61,90,69,0.07), transparent 70%)",
+            }}
+          />
           <div className={`${wide} relative`}>
             <Reveal>
               <p className="flex items-center justify-center gap-3 text-[12px] font-bold tracking-[0.14em] text-[#6B6B6B] uppercase">
@@ -353,7 +361,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ---------- 05 · FILM ---------- */}
+        {/* ---------- 05 · CALM ---------- */}
         <section
           aria-labelledby="film-heading"
           className="relative z-10 -mt-[3vw] rounded-t-[20px] border border-b-0 border-[#E0E0DC] bg-white"
@@ -379,14 +387,80 @@ export default function Home() {
                 </Reveal>
               </div>
             </div>
-            <MediaReveal className="mt-10 md:mt-14">
-              <div className="overflow-hidden rounded-[12px] border border-[#E0E0DC] bg-[#171717] shadow-[0_1px_2px_rgba(0,0,0,0.05),0_24px_64px_rgba(0,0,0,0.10)]">
-                <FilmVideo src="/videos/slide_2.mp4" label="Aks product film" />
+            <Stage
+              item="[data-calm]"
+              className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3"
+            >
+              {[
+                {
+                  t: "No feeds, no streaks",
+                  d: "Nothing competing for your attention. Open Aks when you want, leave when you're done.",
+                },
+                {
+                  t: "Your words first",
+                  d: "Type or speak naturally. Review before you send. Nothing is shared without you.",
+                },
+                {
+                  t: "Your pace",
+                  d: "Short check-ins or long threads. Aks follows the conversation, not a workflow.",
+                },
+              ].map((c, i) => (
+                <div
+                  key={c.t}
+                  data-calm
+                  className="group rounded-[16px] border border-[#E8E8E5] bg-[#FAFAF8] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D8D8D4] hover:shadow-[0_16px_40px_rgba(23,23,23,0.08)] md:p-7"
+                >
+                  <p className="font-mono text-[12px] text-[#9a9a96]">0{i + 1}</p>
+                  <h3 className="mt-3 text-[20px] leading-tight font-bold tracking-[-0.015em] md:text-[22px]">
+                    {c.t}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-[1.65] text-[#6B6B6B]">
+                    {c.d}
+                  </p>
+                </div>
+              ))}
+            </Stage>
+            <Reveal delay={120}>
+              <div className="relative mt-4 overflow-hidden rounded-[16px] border border-[#E0E0DC] bg-gradient-to-r from-[#171717] via-[#232A23] to-[#3D5A45] px-6 py-8 md:px-10 md:py-10">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(420px 200px at 85% 20%, rgba(255,255,255,0.14), transparent 70%), radial-gradient(500px 240px at 10% 100%, rgba(255,255,255,0.08), transparent 70%)",
+                  }}
+                />
+                <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src="/adaptive-icon.png"
+                      alt=""
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 rounded-[14px] border border-white/20"
+                    />
+                    <div>
+                      <p className="text-[19px] font-bold tracking-[-0.01em] text-white md:text-[21px]">
+                        A place to start.
+                      </p>
+                      <p className="mt-0.5 text-[14px] text-white/65">
+                        From the Aks app · Android
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Private", "No ads", "Remove anytime"].map((p) => (
+                      <span
+                        key={p}
+                        className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] font-medium text-white backdrop-blur-sm"
+                      >
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <p className="mt-4 text-[13px] text-[#6B6B6B]">
-                From the Aks app · Android
-              </p>
-            </MediaReveal>
+            </Reveal>
           </div>
         </section>
 
@@ -437,7 +511,7 @@ export default function Home() {
                     href={PLAY_STORE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-13 items-center justify-center gap-2 rounded-[8px] bg-[#171717] px-8 py-3.5 text-[16px] font-medium text-white transition-colors hover:bg-[#2b2b2b] sm:justify-start"
+                    className="flex h-13 items-center justify-center gap-2 rounded-full bg-[#171717] px-8 py-3.5 text-[16px] font-medium text-white shadow-[0_10px_28px_rgba(23,23,23,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2b2b2b] hover:shadow-[0_14px_36px_rgba(23,23,23,0.28)] sm:justify-start"
                   >
                     <PlayStoreIcon size={18} aria-hidden />
                     Get Aks on Android
@@ -461,8 +535,12 @@ export default function Home() {
               </Reveal>
             </div>
 
-            <div className="mx-auto w-full max-w-[300px] lg:col-span-6 lg:mx-0 lg:max-w-[320px] lg:justify-self-center">
-              <MediaReveal>
+            <div className="relative mx-auto w-full max-w-[300px] lg:col-span-6 lg:mx-0 lg:max-w-[320px] lg:justify-self-center">
+              <div
+                aria-hidden
+                className="absolute -inset-8 rounded-[48px] bg-gradient-to-b from-[#EEF2ED] via-[#FAFAF8] to-transparent blur-2xl"
+              />
+              <MediaReveal className="relative">
                 <PhoneShot
                   src="/screenshots/Screenshot_1790073682.png"
                   alt="Aks app splash screen: the Aks orb above the Aks.ai wordmark"
@@ -565,43 +643,54 @@ export default function Home() {
         </section>
 
         {/* ---------- 09 · FINAL ---------- */}
-        <section aria-labelledby="cta-heading" className="border-t-2 border-[#171717]">
-          <div className={`${wide} py-24 md:py-36`}>
-            <Reveal>
-              <p className="flex items-center gap-3 text-[12px] font-bold tracking-[0.14em] text-[#6B6B6B] uppercase">
-                <span className="text-[#3D5A45]">09</span>
-                <span className="h-px w-8 bg-[#D8D8D4]" aria-hidden />
-                Begin
-              </p>
-              <h2
-                id="cta-heading"
-                className="mt-6 max-w-[1000px] text-[clamp(3rem,8.5vw,8.5rem)] leading-[0.95] font-black tracking-[-0.03em]"
-              >
-                Start with what&apos;s
-                <br className="hidden sm:block" aria-hidden />
-                on your mind.
-              </h2>
-            </Reveal>
-            <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-12 lg:items-end">
-              <Reveal className="lg:col-span-6">
-                <p className="max-w-[420px] text-[18px] leading-[1.6] text-[#6B6B6B] md:text-[20px]">
-                  Talk to Aks and see where the conversation takes you.
+        <section aria-labelledby="cta-heading" className="px-4 pb-6 md:px-8 md:pb-10">
+          <div className="relative mx-auto w-full max-w-[1320px] overflow-hidden rounded-[24px] bg-[#141414] px-6 py-16 text-white shadow-[0_32px_80px_rgba(23,23,23,0.28)] md:px-12 md:py-24">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(640px 320px at 12% 8%, rgba(255,255,255,0.12), transparent 65%), radial-gradient(700px 380px at 88% 90%, rgba(120,160,130,0.35), transparent 65%), radial-gradient(420px 220px at 70% 10%, rgba(255,255,255,0.07), transparent 70%)",
+              }}
+            />
+            <div className="relative">
+              <Reveal>
+                <p className="flex items-center gap-3 text-[12px] font-bold tracking-[0.14em] text-white/55 uppercase">
+                  <span className="text-white">09</span>
+                  <span className="h-px w-8 bg-white/25" aria-hidden />
+                  Begin
                 </p>
-              </Reveal>
-              <Reveal delay={90} className="lg:col-span-6 lg:justify-self-end">
-                <a
-                  href={PLAY_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-14 items-center justify-center gap-2 rounded-[8px] bg-[#171717] px-10 text-[17px] font-medium text-white transition-colors hover:bg-[#2b2b2b] sm:inline-flex"
+                <h2
+                  id="cta-heading"
+                  className="mt-6 max-w-[1000px] text-[clamp(2.75rem,8vw,7.5rem)] leading-[0.95] font-black tracking-[-0.03em]"
                 >
-                  <PlayStoreIcon size={18} aria-hidden />
-                  Get Aks
-                </a>
-                <p className="mt-4 text-[13.5px] text-[#6B6B6B] sm:text-right">
-                  Available on Android · iOS coming soon
-                </p>
+                  Start with what&apos;s
+                  <br className="hidden sm:block" aria-hidden />
+                  on your mind.
+                </h2>
               </Reveal>
+              <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-12 lg:items-end">
+                <Reveal className="lg:col-span-6">
+                  <p className="max-w-[420px] text-[18px] leading-[1.6] text-white/65 md:text-[20px]">
+                    Talk to Aks and see where the conversation takes you.
+                  </p>
+                </Reveal>
+                <Reveal delay={90} className="lg:col-span-6 lg:justify-self-end">
+                  <a
+                    href={PLAY_STORE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-14 items-center justify-center gap-2 rounded-full bg-white px-10 text-[17px] font-medium text-[#171717] shadow-[0_12px_32px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#EFEFEA] sm:inline-flex"
+                  >
+                    <PlayStoreIcon size={18} aria-hidden />
+                    Get Aks
+                  </a>
+                  <p className="mt-4 text-[13.5px] text-white/55 sm:text-right">
+                    Available on Android · iOS coming soon
+                  </p>
+                  <ProductHuntBadge className="mt-4 rounded-[10px] sm:ml-auto" />
+                </Reveal>
+              </div>
             </div>
           </div>
         </section>
@@ -610,7 +699,7 @@ export default function Home() {
       {/* ---------- FOOTER ---------- */}
       <footer className="border-t border-[#E8E8E5]">
         <div className={`${wide} pt-14 pb-8 md:pt-20`}>
-          <p className="text-[clamp(4rem,12vw,10rem)] leading-[0.85] font-black tracking-[-0.04em] select-none">
+          <p className="bg-gradient-to-r from-[#171717] via-[#171717] to-[#3D5A45] bg-clip-text text-[clamp(4rem,12vw,10rem)] leading-[0.85] font-black tracking-[-0.04em] text-transparent select-none">
             Aks
           </p>
           <p className="mt-4 max-w-[320px] text-[15px] leading-[1.6] text-[#6B6B6B]">

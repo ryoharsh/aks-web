@@ -4,7 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowDown01Icon } from "hugeicons-react";
-import { DemoVideo } from "./product-video";
+import HeroShowcase from "./hero-showcase";
+import ProductHuntBadge from "./product-hunt-badge";
 import { HeroIntro, isReducedMotion } from "./anim";
 
 if (typeof window !== "undefined") {
@@ -82,13 +83,13 @@ export default function Hero() {
               <div className="flex flex-col gap-2.5 sm:flex-row lg:justify-end">
                 <a
                   href="#availability"
-                  className="flex h-12 items-center justify-center rounded-[8px] bg-[#171717] px-7 text-[15px] font-medium text-white transition-colors hover:bg-[#2b2b2b]"
+                  className="flex h-12 items-center justify-center rounded-full bg-[#171717] px-7 text-[15px] font-medium text-white shadow-[0_8px_24px_rgba(23,23,23,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2b2b2b] hover:shadow-[0_12px_32px_rgba(23,23,23,0.28)]"
                 >
                   Get Aks
                 </a>
                 <a
                   href="#how"
-                  className="flex h-12 items-center justify-center gap-2 rounded-[8px] border border-[#E0E0DC] bg-white px-7 text-[15px] font-medium text-[#171717] transition-colors hover:border-[#d4d4d0] hover:bg-[#F4F4F1]"
+                  className="flex h-12 items-center justify-center gap-2 rounded-full border border-[#E0E0DC] bg-white/80 px-7 text-[15px] font-medium text-[#171717] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#c9c9c4] hover:bg-white hover:shadow-[0_12px_28px_rgba(23,23,23,0.10)]"
                 >
                   See how it works
                   <ArrowDown01Icon size={16} aria-hidden />
@@ -97,6 +98,7 @@ export default function Hero() {
               <p className="mt-4 text-[13.5px] text-[#6B6B6B] sm:text-right">
                 Available on Android · iOS coming soon
               </p>
+              <ProductHuntBadge className="mt-4 sm:ml-auto" />
             </div>
           </div>
         </HeroIntro>
@@ -104,22 +106,7 @@ export default function Hero() {
 
       <div className="mx-auto w-full max-w-[1320px] px-5 md:px-8">
         <div data-hero-showcase className="relative z-10 mt-12 -mb-[7vw] md:mt-16">
-          <div className="overflow-hidden rounded-[12px] border border-[#E0E0DC] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05),0_24px_64px_rgba(0,0,0,0.09)]">
-            <div className="flex items-center gap-3 border-b border-[#E8E8E5] px-4 py-3">
-              <span className="flex gap-1.5" aria-hidden>
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E0E0DC]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E0E0DC]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E0E0DC]" />
-              </span>
-              <span className="flex-1 text-center font-mono text-[12px] text-[#9a9a96]">
-                aks · mirror
-              </span>
-              <span className="hidden rounded-[6px] bg-[#EEF2ED] px-2 py-0.5 text-[12px] font-medium text-[#3D5A45] sm:inline">
-                Live demo
-              </span>
-            </div>
-            <DemoVideo src="/videos/slide_1.mp4" label="Product demonstration of Aks Mirror" />
-          </div>
+          <HeroShowcase />
           <p className="mt-4 text-[13px] text-[#6B6B6B]">
             Mirror, in the Aks app — type or speak, review, send, continue.
           </p>
